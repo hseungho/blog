@@ -15,7 +15,7 @@ export interface GithubContent {
 export interface Post {
   slug: string;
   title: string;
-  date: string;
+  date: Date;
   content: string;
   excerpt?: string;
   tags?: string[];

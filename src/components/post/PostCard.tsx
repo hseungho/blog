@@ -1,5 +1,6 @@
 'use client';
 
+import { formatInTimeZone } from 'date-fns-tz';
 import Image from 'next/image';
 
 import { Post } from '@/types/github';
@@ -50,7 +51,13 @@ const PostCard = ({ post }: PostCardProps) => {
       </div>
       <div className={styles.infoSection}>
         <span className={styles.category}>{post.category}</span>
-        <span className={styles.date}>{post.date}</span>
+        <span className={styles.date}>
+          {formatInTimeZone(
+            post.date,
+            process.env.NEXT_PUBLIC_TIMEZONE || 'Asia/Seoul',
+            'yyyy-MM-dd',
+          )}
+        </span>
       </div>
       {post.tags && post.tags.length > 0 && (
         <div className={styles.tags}>

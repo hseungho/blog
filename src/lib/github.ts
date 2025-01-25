@@ -20,9 +20,11 @@ const octokit = new Octokit({
 const OWNER = process.env.GITHUB_OWNER || '';
 const REPO = process.env.GITHUB_REPO || '';
 
+const rootPath = process.env.ROOT_PATH || '';
+
 export async function getAllPosts(): Promise<Post[]> {
   try {
-    const allPosts = await recursivelyFetchPosts('');
+    const allPosts = await recursivelyFetchPosts(rootPath);
     return allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   } catch (error) {
     console.error('Failed to fetch posts:', error);
@@ -94,20 +96,14 @@ async function recursivelyFetchPosts(path: string): Promise<Post[]> {
       const utcDate =
         commits.data[0]?.commit.author?.date || frontMatter.date || new Date().toISOString();
 
-      const fileDate = formatInTimeZone(
-        new Date(utcDate),
-        process.env.NEXT_PUBLIC_TIMEZONE || 'Asia/Seoul',
-        'yyyy-MM-dd',
-      );
-
       return [
         {
           slug: item.path.replace('.md', ''),
           title: frontMatter.title ?? item.name.replace('.md', ''),
-          date: fileDate,
+          date: utcDate,
           content: markdownContent,
           tags: tags ?? [],
-          category: item.path.split('/')[0],
+          category: item.path.split('/')[item.path.split('/').length - 2],
           images,
         },
       ];
