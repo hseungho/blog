@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { Octokit } from '@octokit/rest';
-import { formatInTimeZone } from 'date-fns-tz';
 import matter from 'gray-matter';
 
 import type { Post } from '@/types/github';
@@ -61,6 +60,10 @@ async function recursivelyFetchPosts(path: string): Promise<Post[]> {
 
       const content = await getFileContent(item.path);
       const { data: frontMatter, content: markdownContent } = matter(content);
+      const title = frontMatter.title ?? item.name.replace('.md', '');
+      if (title.toString().includes('작성중')) {
+        return [];
+      }
 
       const imageMatches = markdownContent.match(/!\[\[(.*?)\]\]/g) ?? [];
       const images: Record<string, string> = {};
