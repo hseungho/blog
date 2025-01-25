@@ -14,7 +14,7 @@ const NotFound = () => (
       style={{
         fontSize: '120px',
         fontWeight: 700,
-        color: '#ea5f20',
+        color: '#5678FF',
         margin: 0,
       }}
     >

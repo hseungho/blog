@@ -219,7 +219,7 @@ const PostDetail = ({ post }: PostDetailProps) => {
 export default PostDetail;
 
 // const blockquoteStyle = css`
-//   border-left: 4px solid #ea5f20;
+//   border-left: 4px solid #5678FF;
 //   margin: 1.5em 0;
 //   padding: 0.5em 1em;
 //   background: #f8f8f8;

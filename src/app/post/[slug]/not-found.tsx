@@ -19,7 +19,7 @@ const PostNotFound = () => (
       style={{
         fontSize: '120px',
         fontWeight: 700,
-        color: '#ea5f20',
+        color: '#5678FF',
         margin: 0,
       }}
     >
@@ -45,17 +45,17 @@ const PostNotFound = () => (
         href="/post"
         style={{
           padding: '12px 24px',
-          backgroundColor: '#ea5f20',
+          backgroundColor: '#5678FF',
           color: 'white',
           borderRadius: '8px',
           textDecoration: 'none',
           transition: 'all 0.2s ease',
         }}
         onMouseOver={e => {
-          e.currentTarget.style.backgroundColor = '#d54e14';
+          e.currentTarget.style.backgroundColor = '#3863ff';
         }}
         onMouseOut={e => {
-          e.currentTarget.style.backgroundColor = '#ea5f20';
+          e.currentTarget.style.backgroundColor = '#3863ff';
         }}
       >
         전체 포스트 보기
@@ -64,17 +64,17 @@ const PostNotFound = () => (
         href="/"
         style={{
           padding: '12px 24px',
-          backgroundColor: '#ea5f20',
+          backgroundColor: '#5678FF',
           color: 'white',
           borderRadius: '8px',
           textDecoration: 'none',
           transition: 'all 0.2s ease',
         }}
         onMouseOver={e => {
-          e.currentTarget.style.backgroundColor = '#d54e14';
+          e.currentTarget.style.backgroundColor = '#3863ff';
         }}
         onMouseOut={e => {
-          e.currentTarget.style.backgroundColor = '#ea5f20';
+          e.currentTarget.style.backgroundColor = '#3863ff';
         }}
       >
         홈으로 돌아가기
