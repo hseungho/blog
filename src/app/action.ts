@@ -4,9 +4,16 @@
 
 import { headers } from 'next/headers';
 
-import privateClient from '@/lib/supabase/private';
+import { getPrivateClient } from '@/lib/supabase/private';
 
 export const getViewCount = async (slug: string) => {
+  const privateClient = getPrivateClient();
+  if (!privateClient) {
+    return {
+      success: true,
+      views: '-',
+    };
+  }
   try {
     const { data, error } = await privateClient.rpc('get_views', {
       page_pathname: slug,
@@ -30,6 +37,12 @@ export const getViewCount = async (slug: string) => {
 };
 
 export const incrementViewCount = async (slug: string) => {
+  const privateClient = getPrivateClient();
+  if (!privateClient) {
+    return {
+      success: true,
+    };
+  }
   try {
     const header = await headers();
 
